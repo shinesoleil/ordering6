@@ -29,6 +29,7 @@
 
 6. find all products  
  e: 8 min  
+ r: 3 min
   
   
 7. return a list of product json when GET products  
