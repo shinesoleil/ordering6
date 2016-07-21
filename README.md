@@ -81,18 +81,9 @@
  e: 8 min  
  r: 4 min
     
- 
-5. return 200 when GET users  
- e: 3 min  
+
     
-  
-6. find all users  
- e: 6 min  
-  
-  
-7. return user json list when GET users  
- e: 5 min  
-  
+
   
   
  
@@ -101,7 +92,7 @@
 
 1. return user json when GET user by user id  
 e: 10 min  
- 
+r: 6 min
  
 2. return 404 when GET by user id not found  
  e: 5 min  
