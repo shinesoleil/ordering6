@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.web;
 
+import com.thoughtworks.ketsu.domain.order.Order;
 import com.thoughtworks.ketsu.domain.product.ProductRepository;
 import com.thoughtworks.ketsu.domain.user.User;
 import com.thoughtworks.ketsu.domain.user.UserRepository;
@@ -66,6 +67,32 @@ public class PaymentApiTest extends ApiSupport{
 
     assertThat(post.getStatus(), is(400));
 
+  }
+
+  @Test
+  public void should_return_payment_json_when_get_payment_by_order_id() {
+    Map<String, Object> productInfo = TestHelper.productMap();
+    productRepository.create(productInfo);
+    int productId = Integer.valueOf(String.valueOf(productInfo.get("id")));
+
+    Map<String, Object> userInfo = TestHelper.userMap();
+    userRepository.create(userInfo);
+    int userId = Integer.valueOf(String.valueOf(userInfo.get("id")));
+    Map<String, Object> orderInfo = TestHelper.orderMap(userId, productId);
+
+    User user = userRepository.findById(userId).get();
+    user.placeOrder(orderInfo);
+    int orderId = Integer.valueOf(String.valueOf(orderInfo.get("id")));
+
+    Order order = user.findOrderById(orderId).get();
+    Map<String, Object> paymentInfo = TestHelper.paymentMap();
+
+    order.pay(paymentInfo);
+
+    Response get = get("users/" + userId + "/orders/" + orderId + "/payment");
+    Map<String, Object> map = get.readEntity(Map.class);
+
+    assertThat(map.get("pay_type"), is("CASH"));
   }
 
 }

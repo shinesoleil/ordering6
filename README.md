@@ -174,8 +174,9 @@ r: 6 min
   return 400 when post with invalid parameters
   r: 3 min
 
-4. return payment when GET payments by order id   
+4. return payment json when GET payments by order id   
  e: 5 min  
+ r: 10 min
   
   
   

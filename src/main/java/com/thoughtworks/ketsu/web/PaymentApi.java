@@ -49,4 +49,13 @@ public class PaymentApi {
       throw new WebApplicationException(Response.Status.BAD_REQUEST);
     }
   }
+
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Payment findPaymentByOrderId(@PathParam("userId") int userId,
+                                      @PathParam("orderId") int orderId) {
+    User user = userRepository.findById(userId).get();
+    Order order = user.findOrderById(orderId).get();
+    return order.findPaymentByOrderId(orderId).get();
+  }
 }

@@ -1,8 +1,13 @@
 package com.thoughtworks.ketsu.domain.payment;
 
-import java.util.Date;
+import com.thoughtworks.ketsu.infrastructure.records.Record;
+import com.thoughtworks.ketsu.web.jersey.Routes;
 
-public class Payment {
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Payment implements Record{
   private int orderId;
   private String payType;
   private Date payTime;
@@ -32,5 +37,22 @@ public class Payment {
 
   public double getAmount() {
     return amount;
+  }
+
+
+  @Override
+  public Map<String, Object> toRefJson(Routes routes) {
+    return null;
+  }
+
+  @Override
+  public Map<String, Object> toJson(Routes routes) {
+    return new HashMap<String, Object>() {{
+      put("orderUri", routes.paymentUrl(Payment.this, getOrderId()));
+      put("uri", routes.paymentUrl(Payment.this, getOrderId()));
+      put("pay_type", payType);
+      put("amount", amount);
+      put("created_at", payTime);
+    }};
   }
 }
