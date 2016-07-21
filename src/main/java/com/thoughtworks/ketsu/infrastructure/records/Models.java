@@ -2,8 +2,10 @@ package com.thoughtworks.ketsu.infrastructure.records;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
+import com.thoughtworks.ketsu.domain.product.ProductRepository;
 import com.thoughtworks.ketsu.domain.user.UserRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.MyBatisUserRepository;
+import com.thoughtworks.ketsu.infrastructure.repositories.ProductRepositoryImpl;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.*;
 import org.apache.ibatis.type.TypeHandler;
@@ -52,6 +54,7 @@ public class Models extends AbstractModule {
     protected void configure() {
         bindPersistence();
         bind(UserRepository.class).to(MyBatisUserRepository.class);
+        bind(ProductRepository.class).to(ProductRepositoryImpl.class);
     }
 
     private void bindPersistence() {
