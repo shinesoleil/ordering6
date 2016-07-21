@@ -42,4 +42,13 @@ public class OrdersApi {
     User user = userRepository.findById(userId).get();
     return user.findOrders();
   }
+
+  @GET
+  @Path("{orderId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Order findOrderById(@PathParam("userId") int userId,
+                             @PathParam("orderId") int orderId) {
+    User user = userRepository.findById(userId).get();
+    return user.findOrderById(orderId).get();
+  }
 }
