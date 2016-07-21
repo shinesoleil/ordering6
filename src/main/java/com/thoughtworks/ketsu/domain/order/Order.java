@@ -4,6 +4,7 @@ import com.thoughtworks.ketsu.infrastructure.records.Record;
 import com.thoughtworks.ketsu.web.jersey.Routes;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,9 +58,25 @@ public class Order implements Record {
     return userId;
   }
 
+  public double getTotalPrice() {
+    double totalPrice = 0;
+    for (OrderItem orderItem: orderItemList) {
+      totalPrice += orderItem.getAmount();
+    }
+    return totalPrice;
+  }
+
   @Override
   public Map<String, Object> toRefJson(Routes routes) {
-    return null;
+    return new HashMap<String, Object>() {{
+      put("id", id);
+      put("uri", routes.orderUrl(Order.this, getUserId()));
+      put("name", name);
+      put("address", address);
+      put("phone", phone);
+      put("total_price", getTotalPrice());
+      put("created_at", time);
+    }};
   }
 
   @Override
