@@ -44,4 +44,28 @@ public class PaymentApiTest extends ApiSupport{
     assertThat(post.getStatus(), is(201));
   }
 
+  @Test
+  public void should_return_400_when_post_payment_with_invalid_parameters() {
+    Map<String, Object> productInfo = TestHelper.productMap();
+    productRepository.create(productInfo);
+    int productId = Integer.valueOf(String.valueOf(productInfo.get("id")));
+
+    Map<String, Object> userInfo = TestHelper.userMap();
+    userRepository.create(userInfo);
+    int userId = Integer.valueOf(String.valueOf(userInfo.get("id")));
+    Map<String, Object> orderInfo = TestHelper.orderMap(userId, productId);
+
+    User user = userRepository.findById(userId).get();
+    user.placeOrder(orderInfo);
+    int orderId = Integer.valueOf(String.valueOf(orderInfo.get("id")));
+
+    Map<String, Object> map = TestHelper.paymentMap();
+    map.replace("pay_type", null);
+
+    Response post = post("users/" + userId + "/orders/" + orderId + "/payment", map);
+
+    assertThat(post.getStatus(), is(400));
+
+  }
+
 }

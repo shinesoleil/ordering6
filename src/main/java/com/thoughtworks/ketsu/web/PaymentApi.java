@@ -4,12 +4,15 @@ import com.thoughtworks.ketsu.domain.order.Order;
 import com.thoughtworks.ketsu.domain.payment.Payment;
 import com.thoughtworks.ketsu.domain.user.User;
 import com.thoughtworks.ketsu.domain.user.UserRepository;
+import com.thoughtworks.ketsu.web.exception.InvalidParameterException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @Path("users/{userId}/orders/{orderId}/payment")
@@ -23,6 +26,18 @@ public class PaymentApi {
   public Response createPayment(HashMap<String, Object> info,
                                 @PathParam("userId") int userId,
                                 @PathParam("orderId") int orderId) {
+
+    List<String> invalidParamList = new ArrayList<>();
+    if (info.get("pay_type") == null) {
+      invalidParamList.add("pay_type");
+    }
+    if (info.get("amount") == null) {
+      invalidParamList.add("amount");
+    }
+
+    if (invalidParamList.size() > 0) {
+      throw new InvalidParameterException(invalidParamList);
+    }
     User user = userRepository.findById(userId).get();
     Order order = user.findOrderById(orderId).get();
     order.pay(info);
