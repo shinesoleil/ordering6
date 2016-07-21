@@ -33,4 +33,13 @@ public class TestHelper {
             put("name", "firstUser");
         }};
     }
+
+    public static Map<String, Object> orderMap(int userId) {
+        return new HashMap<String, Object>() {{
+            put("name", "firstOrder");
+            put("address", "Beijing");
+            put("phone", "13099999999");
+            put("user_id", userId);
+        }};
+    }
 }

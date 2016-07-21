@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thoughtworks.ketsu.infrastructure.mybatis.mappers.OrderMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="order.id" keyColumn="id">
+        INSERT INTO orders (name, address, phone, user_id)
+        VALUES (#{order.name}, #{order.address}, #{order.phone}, #{order.user_id})
+    </insert>
+
+    <select id="findById" resultMap="records.order">
+        SELECT *
+        FROM orders O
+        WHERE O.id = #{id}
+    </select>
+</mapper>
