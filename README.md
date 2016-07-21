@@ -74,6 +74,8 @@
   
   return url
   
+  r: 6 min
+  
   
 4. return 400 when POST product with invalid parameters  
  e: 8 min  

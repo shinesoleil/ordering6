@@ -2,6 +2,7 @@ package com.thoughtworks.ketsu.web;
 
 import com.thoughtworks.ketsu.domain.user.User;
 import com.thoughtworks.ketsu.domain.user.UserRepository;
+import com.thoughtworks.ketsu.web.jersey.Routes;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -10,11 +11,15 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.util.HashMap;
 import java.util.Optional;
 
 @Path("users")
 public class UsersApi {
+
+  @Context
+  UriInfo uriInfo;
 
   @Context
   UserRepository userRepository;
@@ -28,7 +33,7 @@ public class UsersApi {
     Optional<User> userOptional = userRepository.findById(id);
 
     if (userOptional.isPresent()) {
-      return Response.status(201).build();
+      return Response.created(new Routes(uriInfo).userUrl(userOptional.get())).build();
     } else {
       throw new WebApplicationException(Response.Status.BAD_REQUEST);
     }
