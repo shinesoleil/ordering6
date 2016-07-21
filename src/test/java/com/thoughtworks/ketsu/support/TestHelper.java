@@ -27,4 +27,10 @@ public class TestHelper {
             put("price", 630);
         }};
     }
+
+    public static Map<String, Object> userMap() {
+        return new HashMap<String, Object>() {{
+            put("name", "firstUser");
+        }};
+    }
 }
