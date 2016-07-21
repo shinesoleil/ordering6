@@ -34,4 +34,10 @@ public class OrdersApi {
       throw new WebApplicationException(Response.Status.BAD_REQUEST);
     }
   }
+
+  @GET
+  public Response findOrders(@PathParam("userId") int userId) {
+    return Response.status(200).build();
+
+  }
 }
