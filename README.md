@@ -41,6 +41,7 @@
 
 1. return product json when GET product by product id  
  e: 10 min  
+ r: 4 min
   
     
   
