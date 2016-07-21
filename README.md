@@ -118,6 +118,7 @@ r: 6 min
     
 4. return 201 when POST order with parameters  
  e: 8 min  
+ r: 6 min
   
     
 5. return 200 when GET orders  
