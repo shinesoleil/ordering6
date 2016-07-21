@@ -4,6 +4,7 @@
 
 1. return 201 when POST product  
  estimate: 3 min  
+ t: 2 min
 
 
 2. create product with parameters and find product by product id  
