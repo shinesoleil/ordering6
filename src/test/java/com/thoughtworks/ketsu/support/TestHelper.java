@@ -1,6 +1,8 @@
 package com.thoughtworks.ketsu.support;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TestHelper {
@@ -34,12 +36,24 @@ public class TestHelper {
         }};
     }
 
-    public static Map<String, Object> orderMap(int userId) {
+    public static Map<String, Object> orderMap(int userId, int productId) {
         return new HashMap<String, Object>() {{
             put("name", "firstOrder");
             put("address", "Beijing");
             put("phone", "13099999999");
-            put("user_id", userId);
+            put("order_items", orderItemsMapList(productId));
         }};
+    }
+
+    public static List<Map<String, Object>> orderItemsMapList(int productId) {
+        List<Map<String, Object>> list = new ArrayList<>();
+
+        HashMap<String, Object> item = new HashMap() {{
+            put("product_id", productId);
+            put("quantity", 2);
+        }};
+
+        list.add(item);
+        return list;
     }
 }

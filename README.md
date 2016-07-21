@@ -112,7 +112,8 @@ r: 6 min
     
    
 3. create order with orderItems and find by user id and order id  
- e: 15 min
+ e: 15 min  
+ r: 30 min
     
     
 4. return 201 when POST order with parameters  
