@@ -51,6 +51,6 @@ public class UsersApi {
   @Path("{userId}")
   @Produces(MediaType.APPLICATION_JSON)
   public User findUserById(@PathParam("userId") int userId) {
-    return userRepository.findById(userId).get();
+    return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("Cannot find user by id"));
   }
 }
