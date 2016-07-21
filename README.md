@@ -163,6 +163,7 @@ r: 6 min
  
 2. create payment with parameters and find payment by order id  
  e: 15 min  
+ r: 15 min
   
   
 
