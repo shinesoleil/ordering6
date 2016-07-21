@@ -69,6 +69,10 @@
   
 3. return 201 when POST user with parameters  
  e: 5 min  
+ r: 4 min
+  
+  
+  return url
   
   
 4. return 400 when POST product with invalid parameters  
