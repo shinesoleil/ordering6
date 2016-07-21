@@ -49,6 +49,6 @@ public class OrdersApi {
   public Order findOrderById(@PathParam("userId") int userId,
                              @PathParam("orderId") int orderId) {
     User user = userRepository.findById(userId).get();
-    return user.findOrderById(orderId).get();
+    return user.findOrderById(orderId).orElseThrow(() -> new NotFoundException("Cannot find the order by id"));
   }
 }
