@@ -33,4 +33,22 @@
         ON I.order_id = O.id
         WHERE O.id = #{id}
     </select>
+
+    <select id="find" resultMap="records.order">
+        SELECT
+        O.id AS id,
+        O.name AS name,
+        O.address AS address,
+        O.phone AS phone,
+        O.time AS time,
+        O.user_id AS user_id,
+        O.id AS order_id,
+        I.product_id AS product_id,
+        I.quantity AS quantity,
+        I.amount AS amount
+
+        FROM order_items I
+        INNER JOIN orders O
+        ON I.order_id = O.id
+    </select>
 </mapper>
