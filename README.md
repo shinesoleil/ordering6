@@ -1,5 +1,8 @@
 #Ordering tasking
 
+### Total Time: 209 min (about 3.5 hours)
+
+
 * ###/products
 
 1. return 201 when POST product  
