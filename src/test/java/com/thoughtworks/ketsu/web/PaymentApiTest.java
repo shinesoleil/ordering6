@@ -95,4 +95,25 @@ public class PaymentApiTest extends ApiSupport{
     assertThat(map.get("pay_type"), is("CASH"));
   }
 
+  @Test
+  public void should_return_404_when_get_payment_by_order_id() {
+    Map<String, Object> productInfo = TestHelper.productMap();
+    productRepository.create(productInfo);
+    int productId = Integer.valueOf(String.valueOf(productInfo.get("id")));
+
+    Map<String, Object> userInfo = TestHelper.userMap();
+    userRepository.create(userInfo);
+    int userId = Integer.valueOf(String.valueOf(userInfo.get("id")));
+    Map<String, Object> orderInfo = TestHelper.orderMap(userId, productId);
+
+    User user = userRepository.findById(userId).get();
+    user.placeOrder(orderInfo);
+    int orderId = Integer.valueOf(String.valueOf(orderInfo.get("id")));
+
+    Order order = user.findOrderById(orderId).get();
+
+    Response get = get("users/" + userId + "/orders/" + orderId + "/payment");
+
+    assertThat(get.getStatus(), is(404));
+  }
 }
