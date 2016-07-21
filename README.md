@@ -57,6 +57,7 @@
 
 1. return 201 when POST user  
  e: 5 min  
+ r: 2 min
   
   
  
