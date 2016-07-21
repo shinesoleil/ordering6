@@ -14,10 +14,12 @@
   
 3. return 201 when POST product with parameters  
  e: 5 min  
+ r: 5 min
   
   
 4. return 400 when POST product with invalid parameters  
  e: 8 min  
+ 4: 11 min
   
   
 5. return 200 when GET products  

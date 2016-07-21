@@ -10,6 +10,6 @@ public class InvalidParameterExceptionMapper implements ExceptionMapper<InvalidP
     @Override
     public Response toResponse(InvalidParameterException exception) {
         exception.printStackTrace();
-        return Response.status(400).entity(exception.getMessage()).build();
+        return Response.status(400).entity(exception.getInvalidParamMessageList()).build();
     }
 }
