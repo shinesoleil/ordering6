@@ -103,6 +103,7 @@ r: 6 min
 
 1. return 201 when POST order  
  e: 3 min  
+ r: 4 min
   
 
 2. create order without orderItems and find by user id and order id  
