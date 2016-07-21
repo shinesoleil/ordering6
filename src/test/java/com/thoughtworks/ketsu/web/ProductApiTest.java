@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
+import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -40,9 +41,16 @@ public class ProductApiTest extends ApiSupport{
   }
 
   @Test
-  public void should_return_200_when_get_products() {
+  public void should_return_list_of_product_json_when_get_products() {
+    Map<String, Object> info = TestHelper.productMap();
+    productRepository.create(info);
+
     Response get = get("products");
+    List<Map<String, Object>> mapList = get.readEntity(List.class);
 
     assertThat(get.getStatus(), is(200));
+    assertThat(mapList.size(), is(1));
+    assertThat(mapList.get(0).get("name"), is("desk"));
   }
+
 }

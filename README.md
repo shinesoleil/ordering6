@@ -34,6 +34,7 @@
   
 7. return a list of product json when GET products  
  e: 5 min  
+ r: 7 min
   
 
 * ###/products/{productId}

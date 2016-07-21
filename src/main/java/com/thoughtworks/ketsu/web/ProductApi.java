@@ -48,7 +48,9 @@ public class ProductApi {
   }
 
   @GET
-  public Response findProducts() {
-    return Response.status(200).build();
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<Product> findProducts() {
+    return productRepository.find();
   }
+
 }
