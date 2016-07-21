@@ -3,19 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="records">
-    <resultMap id="userId" type="com.thoughtworks.ketsu.domain.user.UserId">
-        <constructor>
-            <idArg column="userId" javaType="string"/>
-        </constructor>
-    </resultMap>
-
-    <resultMap id="user" type="com.thoughtworks.ketsu.domain.user.User">
-        <result property="name" column="userName"/>
-        <result property="email" column="userEmail"/>
-        <result property="role" column="userRole"/>
-        <result property="password" column="userPassword"/>
-        <association property="userId" resultMap="userId"/>
-    </resultMap>
 
     <resultMap id="product" type="com.thoughtworks.ketsu.domain.product.Product">
         <id property="id" column="id"/>

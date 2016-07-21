@@ -7,9 +7,7 @@ import com.google.inject.Provider;
 import com.google.inject.name.Names;
 import com.google.inject.spi.Message;
 import com.google.inject.util.Modules;
-import com.thoughtworks.ketsu.domain.user.EncryptionService;
 import com.thoughtworks.ketsu.infrastructure.records.Models;
-import com.thoughtworks.ketsu.infrastructure.util.DefaultEncryptionService;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.jersey.internal.inject.Injections;
 import org.glassfish.jersey.jackson.JacksonFeature;
@@ -96,7 +94,6 @@ public abstract class InjectBasedRunner extends BlockJUnit4ClassRunner {
                         bind(ApiSupport.SetUp.class).toInstance(() -> {
 
                         });
-                        bind(EncryptionService.class).to(DefaultEncryptionService.class);
                     }
                 }}));
         modules.addAll(getModules());

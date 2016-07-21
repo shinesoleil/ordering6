@@ -3,10 +3,7 @@ package com.thoughtworks.ketsu.web.jersey;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.thoughtworks.ketsu.domain.user.EncryptionService;
-import com.thoughtworks.ketsu.domain.user.UserRepository;
 import com.thoughtworks.ketsu.infrastructure.records.Models;
-import com.thoughtworks.ketsu.infrastructure.util.DefaultEncryptionService;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.filter.LoggingFilter;
@@ -58,7 +55,7 @@ public class Api extends ResourceConfig {
         register(new AbstractBinder() {
             @Override
             protected void configure() {
-                bind(DefaultEncryptionService.class).to(EncryptionService.class);
+
             }
         });
     }
